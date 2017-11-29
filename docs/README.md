@@ -52,6 +52,7 @@ The specific way of tagging and matching is TBD. The general idea is that then t
 ## Plan of Action
 
 1. First customize the interface so it is "HelpMe" branded
-2. Figure out if gogs has an API. If so, turn it on
+2. Figure out if gogs has an API. If so, [turn it on](https://github.com/gogits/go-gogs-client/wiki)
 3. Create a command line tool (helpme container) that is able to collect a help request, record asciinema, and then submit to an API endpoint.
 4. Figure out how to (programaticall? In the interface?) configure a webhook to trigger other repos, and then do something with the content.
+5. Give proper credit to Gogs, contact to ask about logo on [website](https://gogs.io).
