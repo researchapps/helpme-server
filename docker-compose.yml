@@ -1,0 +1,41 @@
+version: '2'
+services:
+    webserver:
+      image: nginx
+      ports:
+        - "80:80"
+        - "443:443"
+      volumes:
+        - ./docker/nginx.conf:/etc/nginx/nginx.conf
+      volumes_from:
+        - gitserver
+
+    gitserver:
+      image: vanessa/gogs
+      restart: always
+      expose:
+      - "3000"
+      ports:
+        - "10022:22"
+      volumes:
+        - ./data/gogs:/data
+        - ./public:/app/gogs/public
+        - ./templates:/app/gogs/templates
+      links:
+       - postgres
+      environment:
+       - "RUN_CROND=true"
+      depends_on:
+       - postgres
+
+    postgres:
+      image: postgres:9.5
+      restart: always
+      environment:
+       - "POSTGRES_USER=${POSTGRES_USER}"
+       - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+       - "POSTGRES_DB=gogs"
+      volumes:
+       - "./data/postgres:/var/lib/postgresql/data"
+
+
