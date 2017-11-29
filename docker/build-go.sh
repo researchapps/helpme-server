@@ -9,7 +9,6 @@ export GOLANG_VERSION="1.8"
 export GOLANG_SRC_URL="https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz"
 export GOLANG_SRC_SHA256="406865f587b44be7092f206d73fc1de252600b79b3cacc587b74b5ef5c623596"
 
-
 # Install build tools
 apk add --no-cache --no-progress --virtual build-deps-go gcc musl-dev openssl go
 

@@ -1,6 +1,6 @@
 FROM alpine:3.5
 
-# Install system utils & Gogs runtime dependencies
+# Install system utils & runtime dependencies
 ADD https://github.com/tianon/gosu/releases/download/1.9/gosu-amd64 /usr/sbin/gosu
 RUN chmod +x /usr/sbin/gosu \
   && echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
@@ -9,6 +9,7 @@ RUN chmod +x /usr/sbin/gosu \
     ca-certificates \
     curl \
     git \
+    vim \
     linux-pam \
     openssh \
     s6 \

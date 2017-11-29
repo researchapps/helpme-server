@@ -3,7 +3,7 @@
 We need to build the image, bring it up, and make a self signed certificate [ref](https://github.com/msis/docker-compose-nginx-gogs)
 
 ```
-docker build -t vanessa/gogs
+docker build -t vanessa/gogs .
 ```
 
 Set the password to what you want, you will need to input this later into the web interface
@@ -26,6 +26,9 @@ docker-compose restart
 ```
 
 You can then go to 127.0.0.1 in your browser. It probably will tell you it's not secure and you need to add an exception, do that for now and enter the information about your database.
+
+## Updating the Image
+After you've started the image, if you select a sqlite3 database you can have data persist easily between updates (granted no changes to the database). I created a script [quick-build.sh](docker/quick-build.sh) that simply re-builds gogs, intended if you are working inside the image. If not, it's probably about the same time to rebuild the image externally.
 
 ## What do I want to build?
 
