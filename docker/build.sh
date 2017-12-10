@@ -11,10 +11,9 @@ export GO15VENDOREXPERIMENT=1
 apk --no-cache --no-progress add --virtual build-deps build-base linux-pam-dev
 
 # Install go-bindata
-# Don't need this, provided in package
-# go get github.com/jteeuwen/go-bindata
-# cd ${GOPATH}/src/github.com/jteeuwen/go-bindata/go-bindata
-# go install
+go get github.com/jteeuwen/go-bindata
+cd ${GOPATH}/src/github.com/jteeuwen/go-bindata/go-bindata
+go install
 
 # Build
 mkdir -p ${GOPATH}/src/github.com/gogits/
@@ -23,9 +22,6 @@ cd ${GOPATH}/src/github.com/gogits/gogs
 # Needed since git 2.9.3 or 2.9.4
 git config --global http.https://gopkg.in.followRedirects true
 make build TAGS="sqlite cert pam"
-
-# add custom configuration
-cp /app/gogs/build/conf/helpme.ini /data/gogs/conf/app.ini
 
 # Cleanup GOPATH
 # rm -r $GOPATH

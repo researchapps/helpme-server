@@ -7,6 +7,10 @@ set -e
 # Move to final place
 mv /app/gogs/build/gogs /app/gogs/
 
+# add custom configuration
+mkdir -p /data/gogs/conf
+cp /app/gogs/build/conf/helpme.ini /data/gogs/conf/app.ini
+
 # Final cleaning
 # rm -rf /app/gogs/build
 # rm /app/gogs/docker/build.sh

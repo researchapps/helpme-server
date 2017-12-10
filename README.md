@@ -6,8 +6,6 @@ HelpMe is a collaborative infrastructure to provide version controlled support f
 
 This project is made possible by way of the fabulous Gogs framework, which made most of HelpMe possible. Thank you!
 
-![](https://github.com/gogits/gogs/blob/master/public/img/gogs-large-resize.png?raw=true)
-
 
 ## Features
 

@@ -18,17 +18,29 @@ docker-compose up -d
 Then create a self signed certificate
 
 ```
-docker exec -it (gitserver) bash
+docker exec -it helpmeserver_webserver_1 bash
 cd /data/gogs/conf/
 /app/gogs/gogs cert -ca=true -duration=8760h0m0s -host=0.0.0.0
 exit
 docker-compose restart
 ```
 
-You can then go to 127.0.0.1 in your browser. It probably will tell you it's not secure and you need to add an exception, do that for now and enter the information about your database.
+You can then go to [127.0.0.1](http://127.0.0.1) in your browser. It probably will tell you it's not secure and you need to add an exception, do that for now and enter the information about your database.
 
 ## Updating the Image
-After you've started the image, if you select a sqlite3 database you can have data persist easily between updates (granted no changes to the database). I created a script [quick-build.sh](docker/quick-build.sh) that simply re-builds gogs, intended if you are working inside the image. If not, it's probably about the same time to rebuild the image externally.
+After you've started the image, if you select a sqlite3 database you can have data persist easily between updates (granted no changes to the database). I created a script [quick-build.sh](docker/quick-build.sh) that simply re-builds gogs, intended if you are working inside the image. If not, it's probably about the same time to rebuild the image externally. (Note, should actually be using the makefile for this).
+
+
+
+## Transfer from Question to Knowledge
+
+1. User has question, asks it to helpme tool
+2. Question is posted to help me portal to issue router configured by some admin (this also means that a group could have multiple issue routers for different things).
+3. The issue router parses the issue and tags, and transfers it along to the correct board.
+4. It is posted to the board for the owners of the board to answer, or redirect elsewhere. 
+5. The user is returned a link to keep track of the issue.
+
+(Things I'm thinking about - should the router be made intentionally? How are admins associated with it? What if there are no boards?)
 
 ## What do I want to build?
 
@@ -54,8 +66,9 @@ The specific way of tagging and matching is TBD. The general idea is that then t
 
 ## Plan of Action
 
-1. First customize the interface so it is "HelpMe" branded
-2. Figure out if gogs has an API. If so, [turn it on](https://github.com/gogits/go-gogs-client/wiki)
-3. Create a command line tool (helpme container) that is able to collect a help request, record asciinema, and then submit to an API endpoint.
-4. Figure out how to (programaticall? In the interface?) configure a webhook to trigger other repos, and then do something with the content.
-5. Give proper credit to Gogs, contact to ask about logo on [website](https://gogs.io).
+ - [x] First customize the interface so it is "HelpMe" branded
+ - [x] Figure out if gogs has an API. If so, [turn it on](https://github.com/gogits/go-gogs-client/wiki)
+ - [] make a view that exports the user token, and URL of the server to go to (or a router?)
+ - [] Create a command line tool (helpme container) that is able to collect a help request, record asciinema, and then submit to an API endpoint.
+ - [] Figure out how to (programaticall? In the interface?) configure a webhook to trigger other repos, and then do something with the content.
+ - [] Give proper credit to Gogs, contact to ask about logo on [website](https://gogs.io).
